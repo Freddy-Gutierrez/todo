@@ -30,6 +30,14 @@
   font-size: small;
 }
 
+.item-text-finished {
+  color: rgb(167, 169, 194);
+  margin-left: 10px;
+  text-decoration: line-through;
+  font-family: sans-serif;
+  font-size: small;
+}
+
 ::placeholder {
   color: rgba(255, 255, 255, 0.966);
   border: none;
@@ -46,4 +54,32 @@ ul {
 
 .input {
   border: none;
+}
+
+.list-footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(37, 39, 60);
+  height: 20px;
+  padding-top: 2%;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  width: 27%;
+  height: 70%;
+}
+
+.button-link {
+  background: none !important;
+  border: none;
+  outline: none;
+  padding: 0 !important;
+  /*optional*/
+  font-family: sans-serif;
+  font-size: small;
+  /*input has OS specific font-family*/
+  color: rgb(167, 169, 194);
+  cursor: pointer;
 }
