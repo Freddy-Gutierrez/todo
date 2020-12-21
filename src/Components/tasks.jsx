@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import DarkTheme from './darkTheme';
+import LightTheme from './lightTheme';
 class Tasks extends Component {
-    state = {  newTask: {todo: "", completed: false, active: true}, tasks: [], displayedTasks: [], activeFilter: 0, theme: "light"};
+    state = {  newTask: {todo: "", completed: false, active: true}, tasks: [], displayedTasks: [], activeFilter: 0, theme: "dark"};
 
     componentDidMount() {
-        let tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];   
+        let tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];  
+        let theme = localStorage.getItem("theme") ;
         console.log(tasks)             ;
-        this.setState({tasks, displayedTasks: tasks});
+        this.setState({tasks, displayedTasks: tasks, theme});
     }
 
     handleChange = ({ currentTarget: input }) => {
@@ -56,64 +59,46 @@ class Tasks extends Component {
 
     }
 
+    changeTheme = () => {
+        let {theme} = this.state;
+        theme === "light" ? theme = "dark" : theme = "light";
+        localStorage.setItem("theme", theme);
+        console.log(theme);
+        this.setState({theme});
+    }
+
     render() { 
-        const {newTask, tasks, activeFilter, theme} = this.state;
+        const {newTask, tasks, displayedTasks, activeFilter, theme} = this.state;
         const incompleteTasks = tasks.filter(task => task.completed === false);        
         return (             
             theme === "dark" ? 
-            <div className="container" style={{backgroundColor:"black"}}>
-                <div className="header">
-                    <h1 style={{color: "white"}}>TODO</h1>
-                    <img className="sun-icon" src="./sun_light.png" alt="sun icon" onClick={() => this.setState({theme: "light"})}/>
-                </div>
-                <ul className="ul">
-                    <li className="item-dark">
-                        <input className="radio" type="radio" onClick={this.addTask}/>
-                        <input className="item-input-dark" type="text" name="todo" onChange={this.handleChange} value={newTask.todo} placeholder="Create a new todo..."></input>
-                    </li><br/>                    
-                    {tasks.length === 0 ? "" : this.state.displayedTasks.map((task, ind) => {
-                        return <li className="item-dark" key={ind}><input className="radio" type="radio" onClick={() => this.completeTask(ind)} value={ind} checked={task.completed ? true : false} readOnly/><span className={task.completed ? "item-text-finished-dark" : "item-text-unfinished-dark"}>{task.todo}</span></li>
-                    })}
-                    <li className="item-dark">
-                        <div className="list-footer-dark">                            
-                            <span className="item-text-unfinished-dark" style={{color: "rgb(167, 169, 194)"}}>{`${incompleteTasks.length} items left`}</span>
-                                <span className="filters">
-                                    <button className="button-link-dark" style={activeFilter === 0 ? {color: "rgb(56, 103, 208)"} : {color: "rgb(167, 169, 194)"}} onClick={() => this.filter(0)}>All</button>
-                                    <button className="button-link-dark" style={activeFilter === 1 ? {color: "rgb(56, 103, 208)"} : {color: "rgb(167, 169, 194)"}} onClick={() => this.filter(1)}>Active</button>
-                                    <button className="button-link-dark" style={activeFilter === 2 ? {color: "rgb(56, 103, 208)"} : {color: "rgb(167, 169, 194)"}} onClick={() => this.filter(2)}>Completed</button>
-                                </span>
-                            <button className="button-link-dark" style={{height: "40%"}} onClick={this.clearCompleted}>Clear Completed</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <DarkTheme
+                addTask={this.addTask}
+                handleChange={this.handleChange}
+                completeTask={this.completeTask}
+                filter={this.filter}
+                clearCompleted={this.clearCompleted}
+                changeTheme={this.changeTheme}
+                activeFilter={activeFilter}
+                newTask={newTask}
+                tasks={tasks}
+                displayedTasks={displayedTasks}
+                incompleteTasks={incompleteTasks}
+            />
             : 
-            <div className="container" style={{backgroundColor:"rgba(228, 228, 228, 0.952)"}}>
-                <div className="header">
-                    <h1 style={{color: "black"}}>TODO</h1>
-                    <img className="sun-icon" src="./sun_dark.png" alt="sun icon" onClick={() => this.setState({theme: "dark"})}/>
-                </div>
-                <ul className="ul">
-                    <li className="item-light">
-                        <input className="radio" type="radio" onClick={this.addTask}/>
-                        <input className="item-input-light" type="text" name="todo" onChange={this.handleChange} value={newTask.todo} placeholder="Create a new todo..."></input>
-                    </li><br/>                    
-                    {tasks.length === 0 ? "" : this.state.displayedTasks.map((task, ind) => {
-                        return <li className="item-light" key={ind}><input className="radio" type="radio" onClick={() => this.completeTask(ind)} value={ind} checked={task.completed ? true : false} readOnly/><span className={task.completed ? "item-text-finished-light" : "item-text-unfinished-light"}>{task.todo}</span></li>
-                    })}
-                    <li className="item-light">
-                        <div className="list-footer-light">                            
-                            <span className="item-text-unfinished-light" style={{color: "black"}}>{`${incompleteTasks.length} items left`}</span>
-                                <span className="filters">
-                                    <button className="button-link-light" style={activeFilter === 0 ? {color: "rgb(56, 103, 208)"} : {color: "black"}} onClick={() => this.filter(0)}>All</button>
-                                    <button className="button-link-light" style={activeFilter === 1 ? {color: "rgb(56, 103, 208)"} : {color: "black"}} onClick={() => this.filter(1)}>Active</button>
-                                    <button className="button-link-light" style={activeFilter === 2 ? {color: "rgb(56, 103, 208)"} : {color: "black"}} onClick={() => this.filter(2)}>Completed</button>
-                                </span>
-                            <button className="button-link-light" style={{height: "40%"}} onClick={this.clearCompleted}>Clear Completed</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <LightTheme
+                addTask={this.addTask}
+                handleChange={this.handleChange}
+                completeTask={this.completeTask}
+                filter={this.filter}
+                clearCompleted={this.clearCompleted}
+                changeTheme={this.changeTheme}
+                activeFilter={activeFilter}
+                newTask={newTask}
+                tasks={tasks}
+                displayedTasks={displayedTasks}
+                incompleteTasks={incompleteTasks}
+            />
          );
     }
 }

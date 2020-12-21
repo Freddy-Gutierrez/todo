@@ -38,79 +38,6 @@
   border-radius: 15px;
 }
 
-.item-dark {
-  background-color: rgb(37, 39, 60);
-  border-bottom: solid 1px rgb(167, 169, 194);
-  height: 40px;
-}
-
-.item-light {
-  background-color: white;
-  border-bottom: solid 1px black;
-  height: 40px;
-}
-
-.item-input-dark {
-  outline: none;
-  border: none;
-  background-color: rgb(37, 39, 60);
-  color: rgba(255, 255, 255, 0.966);
-  font-family: sans-serif;
-  font-size: small;
-  margin-left: 10px;
-}
-
-.item-input-light {
-  outline: none;
-  border: none;
-  background-color: white;
-  color: black;
-  font-family: sans-serif;
-  font-size: small;
-  margin-left: 10px;
-}
-
-.item-text-unfinished-dark {
-  color: rgba(255, 255, 255, 0.966);
-  margin-left: 10px;
-  font-family: sans-serif;
-  font-size: small;
-}
-
-.item-text-unfinished-light {
-  color: black;
-  margin-left: 10px;
-  font-family: sans-serif;
-  font-size: small;
-}
-
-.item-text-finished-dark {
-  color: rgb(167, 169, 194);
-  margin-left: 10px;
-  text-decoration: line-through;
-  font-family: sans-serif;
-  font-size: small;
-}
-
-.item-text-finished-light {
-  color: black;
-  margin-left: 10px;
-  text-decoration: line-through;
-  font-family: sans-serif;
-  font-size: small;
-}
-
-.item-input-dark::placeholder {
-  color: rgba(255, 255, 255, 0.966);
-  border: none;
-  opacity: 1;
-}
-.item-input-light::placeholder {
-  color: black;
-  border: none;
-  opacity: 1;
-}
-
 .radio {
   margin-left: 15px;
   margin-top: 13px;
@@ -124,51 +51,9 @@ ul {
   border: none;
 }
 
-.list-footer-dark {
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(37, 39, 60);
-  height: 20px;
-  padding-top: 2%;
-}
-
-.list-footer-light {
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  height: 20px;
-  padding-top: 2%;
-}
-
 .filters {
   display: flex;
   justify-content: space-between;
   width: 27%;
   height: 70%;
-}
-
-.button-link-dark {
-  background: none !important;
-  border: none;
-  outline: none;
-  padding: 0 !important;
-  /*optional*/
-  font-family: sans-serif;
-  font-size: small;
-  /*input has OS specific font-family*/
-  color: rgb(167, 169, 194);
-  cursor: pointer;
-}
-
-.button-link-light {
-  background: none !important;
-  border: none;
-  outline: none;
-  padding: 0 !important;
-  /*optional*/
-  font-family: sans-serif;
-  font-size: small;
-  /*input has OS specific font-family*/
-  color: black;
-  cursor: pointer;
 }
