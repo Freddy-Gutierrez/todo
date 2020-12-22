@@ -1,9 +1,12 @@
+.background {
+  width: 100%;
+}
+
 .container {
-  width: 33%;
-  border: solid black;
+  min-width: 33%;
   display: table;
   position: absolute;
-  top: 25%;
+  top: 10%;
   left: 33%;
 }
 
@@ -19,10 +22,11 @@
   cursor: pointer;
 }
 
-.sun-icon:hover {
-  height: 50px;
-  width: 50px;
-  margin-top: 20px;
+.moon-icon {
+  height: 35px;
+  width: 35px;
+  margin-top: 25px;
+  cursor: pointer;
 }
 
 .ul {
